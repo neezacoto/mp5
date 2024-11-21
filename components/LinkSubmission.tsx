@@ -9,6 +9,7 @@ const LinkSubmission = () => {
   const [error, setError] = useState(false);
 
   const smegmaMoment = async () => {
+    // https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
     try {
       new URL(input);
     } catch {
@@ -64,7 +65,9 @@ const LinkSubmission = () => {
   );
 };
 
-const styles = {
+import { CSSProperties } from "react";
+
+const styles: { [key: string]: CSSProperties } = {
   error: {
     color: "red",
     textAlign: "center",
