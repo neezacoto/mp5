@@ -1,13 +1,31 @@
 "use client";
 import { useState } from "react";
+import createLink from "../lib/createLink";
 
 const LinkSubmission = () => {
   const [smegma, setSmegma] = useState("_");
   const [input, setInput] = useState("");
   const [alias, setAlias] = useState("");
-  const smegmaMoment = () => {
-    setSmegma("smegma");
+  const [error, setError] = useState(false);
+
+  const smegmaMoment = async () => {
+    try {
+      new URL(input);
+    } catch {
+      setError(true);
+      return;
+    }
+    setError(false);
+    const currentUrl = window.location.origin;
+    const generatedLink = `${currentUrl}/${alias}`;
+    const result = await createLink(alias, input);
+    if (result) {
+      setSmegma(generatedLink);
+    } else {
+      setSmegma("Error creating link");
+    }
   };
+
   return (
     <div style={styles.bigContainer}>
       <div style={styles.linkContainer}>{smegma}</div>
@@ -26,12 +44,18 @@ const LinkSubmission = () => {
         </div>
         <div>
           <input
+            type="url"
             style={styles.input}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="link"
           />
         </div>
+        {error && (
+          <div style={styles.error}>
+            Ok buddy pal, it says link, not whatever you just typed.
+          </div>
+        )}
         <div style={styles.button} onClick={smegmaMoment}>
           Submit
         </div>
@@ -41,6 +65,11 @@ const LinkSubmission = () => {
 };
 
 const styles = {
+  error: {
+    color: "red",
+    textAlign: "center",
+    fontSize: ".8rem",
+  },
   button: {
     marginTop: "1rem",
     backgroundColor: "#008CBA",
@@ -102,4 +131,5 @@ const styles = {
     padding: ".5em 1em",
   },
 };
+
 export default LinkSubmission;
