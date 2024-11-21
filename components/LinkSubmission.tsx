@@ -3,7 +3,7 @@ import { useState } from "react";
 import createLink from "../lib/createLink";
 
 const LinkSubmission = () => {
-  const [smegma, setSmegma] = useState("_");
+  const [smegma, setSmegma] = useState("_"); // link display field, I will be keeping the funny name
   const [input, setInput] = useState("");
   const [alias, setAlias] = useState("");
   const [error, setError] = useState(false);
