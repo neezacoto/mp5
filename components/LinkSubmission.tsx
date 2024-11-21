@@ -3,6 +3,8 @@ import { useState } from "react";
 
 const LinkSubmission = () => {
   const [smegma, setSmegma] = useState("_");
+  const [input, setInput] = useState("");
+  const [alias, setAlias] = useState("");
   const smegmaMoment = () => {
     setSmegma("smegma");
   };
@@ -15,10 +17,20 @@ const LinkSubmission = () => {
           <div>🙂‍↕️👇↕️</div>
         </div>
         <div>
-          <input style={styles.input} placeholder="shortened link name" />
+          <input
+            style={styles.input}
+            value={alias}
+            onChange={(e) => setAlias(e.target.value)}
+            placeholder="shortened link name"
+          />
         </div>
         <div>
-          <input style={styles.input} placeholder="link" />
+          <input
+            style={styles.input}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="link"
+          />
         </div>
         <div style={styles.button} onClick={smegmaMoment}>
           Submit
