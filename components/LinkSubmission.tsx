@@ -7,7 +7,7 @@ const LinkSubmission = () => {
   const [input, setInput] = useState("");
   const [alias, setAlias] = useState("");
   const [error, setError] = useState(false);
-
+  console.log("OASTEHURTAOEHUSOAEHURC", process.env.NEXT_PUBLIC_MONGO_URI);
   const smegmaMoment = async () => {
     // https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
     try {

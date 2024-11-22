@@ -2,7 +2,6 @@ import { MongoClient, Db, Collection } from "mongodb";
 
 const MONGO_URI = process.env.NEXT_PUBLIC_MONGO_URI as string;
 if (!MONGO_URI) {
-    console.log("No enviroment brother sadge face")
     throw new Error("MONGO_URI environment variable is undefined")
 }
 
